@@ -140,7 +140,7 @@ public class Customer implements Comparable<Customer> {
     }
 
     public String showInformationCustomer() {
-        return  "Customer{" +
+         return "Customer{" +
                 "fullName='" + fullName + '\'' +
                 ", birthDay='" + birthDay + '\'' +
                 ", gender='" + gender + '\'' +

@@ -1,13 +1,21 @@
 package controllers;
 
+import commons.ReadWriteFile;
+import models.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainController {
     Scanner scanner = new Scanner(System.in);
+    CustomerController customerController = new CustomerController();
     VillaController villaController = new VillaController();
     HouseController houseController = new HouseController();
     RoomController roomController = new RoomController();
-    CustomerController customerController = new CustomerController();
+    EmployeeController employeeController = new EmployeeController();
+    BookingController bookingController = new BookingController();
+
     public void displayMainMenu() {
         do {
             System.out.println("Main Menu :\n" +
@@ -16,7 +24,7 @@ public class MainController {
                     "3.Add New Customer\n" +
                     "4.Show Information of Customer\n" +
                     "5.Add New Booking\n" +
-                    "6.Show Information of Employee\n" +
+                    "6.Employee Management\n" +
                     "7.Exit");
             int choice = choice();
             switch (choice) {
@@ -33,6 +41,11 @@ public class MainController {
                     customerController.showCustomerList();
                     break;
                 case 5:
+                    bookingController.addNewBooking();
+                    break;
+                case 6:
+                    employeeManagement();
+                    break;
                 case 7:
                     System.out.println("------GOOD BYE------");
                     System.exit(0);
@@ -109,13 +122,12 @@ public class MainController {
                 System.out.println("---Input out of range (1 -> 8),try again---");
                 showService();
         }
-
     }
 
     int choice() {
         int choice;
         do {
-            System.out.println("Input your choice (do not out of range's list)");
+            System.out.println("Input your choice (do not out of range's list) :");
             try {
                 choice = Integer.parseInt(scanner.nextLine());
                 break;
@@ -125,6 +137,32 @@ public class MainController {
         } while (true);
         return choice;
     }
+
+    public void employeeManagement() {
+        System.out.println("1.Add New Employee\n" +
+                "2.Show Employee's list\n" +
+                "3.Back To Main Menu\n" +
+                "4.Exit");
+        int choice;
+        do {
+            choice = choice();
+        } while (choice < 1 || choice > 4);
+        switch (choice) {
+            case 1:
+                employeeController.addNewEmployee();
+                break;
+            case 2:
+                employeeController.showEmployeeList();
+                break;
+            case 3:
+                displayMainMenu();
+                break;
+            case 4:
+                System.exit(0);
+        }
+    }
+
+
 
     public static void main(String[] args) {
         MainController mainController = new MainController();

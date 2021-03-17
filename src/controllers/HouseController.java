@@ -8,7 +8,8 @@ import models.Villa;
 import java.util.*;
 
 public class HouseController {
-    private static final String HOUSE_PATH="D:\\FuramaResort\\src\\data\\House.csv";
+    private static final String HOUSE_PATH = "D:\\FuramaResort\\src\\data\\House.csv";
+
     public void addNewHouse() {
         Scanner scanner = new Scanner(System.in);
         House house = new House();
@@ -104,29 +105,45 @@ public class HouseController {
         writeHouseCsv(house);
     }
 
-    public void showHouseList(){
+    public List<House> showHouseList() {
         List<House> houseList = new ArrayList<>(readHouseCsv());
-        for (House house : houseList){
-            house.showInfor();
+        int size = houseList.size();
+        if (size ==0){
+            System.out.println("House's list is empty");
+            System.out.println("------------------------");
         }
+        System.out.println("------------------------");
+        for (int i = 0; i < houseList.size(); i++) {
+            System.out.println((i + 1) + ". " + houseList.get(i).showInfor());
+        }
+        System.out.println("------------------------");
+        return houseList;
     }
-    public void showHouseListNotDuplicate(){
+
+    public void showHouseListNotDuplicate() {
         Set<House> houseSet = new TreeSet<>(readHouseCsv());
-        for(House house : houseSet){
-            house.showInfor();
+        int size = houseSet.size();
+        if (size ==0){
+            System.out.println("House's list is empty");
+            System.out.println("------------------------");
         }
+        System.out.println("------------------------");
+        for (House house : houseSet) {
+            System.out.println(house.showInfor());
+        }
+        System.out.println("------------------------");
     }
 
-    private void writeHouseCsv(House house){
+    private void writeHouseCsv(House house) {
         ReadWriteFile write = new ReadWriteFile();
-        write.write(house,HOUSE_PATH,true);
+        write.write(house, HOUSE_PATH, true);
     }
 
-    private List<House> readHouseCsv(){
+    private List<House> readHouseCsv() {
         ReadWriteFile read = new ReadWriteFile();
         List<String[]> list = new ArrayList<>(read.read(HOUSE_PATH));
         List<House> houseList = new ArrayList<>();
-        for (String[] strings : list){
+        for (String[] strings : list) {
             House house = new House(strings);
             houseList.add(house);
         }

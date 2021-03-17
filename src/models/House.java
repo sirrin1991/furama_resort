@@ -52,8 +52,8 @@ public class House extends Service implements Comparable<House> {
     }
 
     @Override
-    public void showInfor() {
-        System.out.println("House {service code='" + getServiceCode() + "'" +
+    public String showInfor() {
+        return  "House {service code='" + getServiceCode() + "'" +
                 ", serviceName='" + getServiceName() + "'" +
                 ", usable area='" + getUsableArea() + "'" +
                 ", rental cost='" + getRentalCost() + "'" +
@@ -61,7 +61,7 @@ public class House extends Service implements Comparable<House> {
                 ", rental type='" + getRentalType() + "'" +
                 ", room standard='" + roomStandard + "'" +
                 ", other convenient='" + otherConvenient + "'" +
-                ", number of floors='" + numberOfFloors + "'}");
+                ", number of floors='" + numberOfFloors + "'}";
     }
 
 

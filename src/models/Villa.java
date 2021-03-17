@@ -66,8 +66,8 @@ public class Villa extends Service implements Comparable<Villa>  {
     }
 
     @Override
-    public void showInfor() {
-        System.out.println("Villa {service code ='" + getServiceCode() + "'" +
+    public String showInfor() {
+        return "Villa {service code ='" + getServiceCode() + "'" +
                 ", serviceName='" + getServiceName() + "'" +
                 ", usable area='" + getUsableArea() + "'" +
                 ", rental cost='" + getRentalCost() + "'" +
@@ -76,7 +76,7 @@ public class Villa extends Service implements Comparable<Villa>  {
                 ", room standard='" + roomStandard + "'" +
                 ", other convenient='" + otherConvenient + "'" +
                 ", pool area='" + poolArea + "'" +
-                ", number of floors='" + numberOfFloors + "'}");
+                ", number of floors='" + numberOfFloors + "'}";
     }
 
     @Override

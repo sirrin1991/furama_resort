@@ -30,14 +30,14 @@ public class Room extends Service implements Comparable<Room> {
     }
 
     @Override
-    public void showInfor() {
-        System.out.println("Room {service code ='" + getServiceCode() + "'" +
+    public String showInfor() {
+        return  "Room {service code ='" + getServiceCode() + "'" +
                 ", serviceName='" + getServiceName() + "'" +
                 ", usable area='" + getUsableArea() + "'" +
                 ", rental cost='" + getRentalCost() + "'" +
                 ", maxAmountOfPeople='" + getMaxAmountPeople() + "'" +
                 ", rental type='" + getRentalType() + "'" +
-                ", free service included='" + freeService + "'}");
+                ", free service included='" + freeService + "'}";
     }
 
     @Override

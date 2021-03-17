@@ -83,6 +83,6 @@ public abstract class Service {
         return serviceCode + "," + serviceName + "," + usableArea + "," + rentalCost + "," + maxAmountPeople + "," + rentalType;
     }
 
-    public abstract void showInfor();
+    public abstract String showInfor();
 
 }

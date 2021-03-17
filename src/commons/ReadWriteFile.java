@@ -24,6 +24,26 @@ public class ReadWriteFile<E> {
         }
     }
 
+    public void writeList(List<E> e,String path,boolean writeMode){
+        BufferedWriter bw =null;
+        try{
+            bw = new BufferedWriter(new FileWriter(path,writeMode));
+            for(E element : e){
+                bw.write(element.toString());
+                bw.newLine();
+            }
+            bw.flush();
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }finally {
+            try {
+                bw.close();
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+    }
+
     public List<String[]> read(String path) {
         BufferedReader br = null;
         List<String[]> list = new ArrayList<>();

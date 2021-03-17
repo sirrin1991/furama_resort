@@ -116,17 +116,28 @@ public class VillaController {
         System.out.println("----------------------");
     }
 
-    public void showVillaList() {
+    public List<Villa> showVillaList() {
         List<Villa> villaList = new ArrayList<>(readVillaCsv());
-        for (Villa villa : villaList) {
-            villa.showInfor();
+        int size = villaList.size();
+        if (size ==0){
+            System.out.println("Villa's list is empty");
+            System.out.println("---------------------");
         }
+        for (int i = 0; i < villaList.size(); i++) {
+            System.out.println((i + 1) + ". " + villaList.get(i).showInfor());
+        }
+        return villaList;
     }
 
-    public void showVillaListNotDuplicate(){
+    public void showVillaListNotDuplicate() {
         Set<Villa> villaSet = new TreeSet<>(readVillaCsv());
-        for(Villa villa : villaSet){
-            villa.showInfor();
+        int size = villaSet.size();
+        if (size ==0){
+            System.out.println("Villa's list is empty");
+            System.out.println("---------------------");
+        }
+        for (Villa villa : villaSet) {
+            System.out.println(villa.showInfor());
         }
     }
 
