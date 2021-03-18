@@ -29,12 +29,6 @@ public class Customer implements Comparable<Customer> {
         this.address = address;
     }
 
-    public Customer(String fullName, String birthDay, String gender,
-                    String iDCard, String phoneNumber, String email, String customerType, String address, Service service) {
-        this(fullName, birthDay, gender,
-                iDCard, phoneNumber, email, customerType, address);
-        this.service = service;
-    }
 
     public Customer(String[] strings) {
         this.fullName = strings[0];
@@ -45,6 +39,18 @@ public class Customer implements Comparable<Customer> {
         this.email = strings[5];
         this.customerType = strings[6];
         this.address = strings[7];
+    }
+
+    public Customer(String[] strings,Service service) {
+        this.fullName = strings[0];
+        this.birthDay = strings[1];
+        this.gender = strings[2];
+        this.iDCard = strings[3];
+        this.phoneNumber = strings[4];
+        this.email = strings[5];
+        this.customerType = strings[6];
+        this.address = strings[7];
+        this.service = service;
     }
 
     public String getFullName() {
@@ -140,16 +146,29 @@ public class Customer implements Comparable<Customer> {
     }
 
     public String showInformationCustomer() {
-         return "Customer{" +
-                "fullName='" + fullName + '\'' +
-                ", birthDay='" + birthDay + '\'' +
+        if(getService()!=null){
+            return "Customer{" +
+                    "FullName='" + fullName + '\'' +
+                    ", birthday='" + birthDay + '\'' +
+                    ", gender='" + gender + '\'' +
+                    ", IDCard='" + iDCard + '\'' +
+                    ", phonenumber='" + phoneNumber + '\'' +
+                    ", email='" + email + '\'' +
+                    ", customertype='" + customerType + '\'' +
+                    ", address='" + address + '\'' +
+                    ", service='" + service.showInfor()+
+                    "'}";
+        }
+        return "Customer{" +
+                "FullName='" + fullName + '\'' +
+                ", birthday='" + birthDay + '\'' +
                 ", gender='" + gender + '\'' +
-                ", iDCard='" + iDCard + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
+                ", IDCard='" + iDCard + '\'' +
+                ", phonenumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", customerType='" + customerType + '\'' +
+                ", customertype='" + customerType + '\'' +
                 ", address='" + address + '\'' +
-                ", service='" + service +
+                ", service='" + service+
                 "'}";
     }
 

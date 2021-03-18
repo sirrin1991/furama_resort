@@ -9,6 +9,8 @@ import java.util.*;
 public class EmployeeController {
     private static final String EMPLOYEE_PATH = "D:\\FuramaResort\\src\\data\\Employee.csv";
     Scanner scanner = new Scanner(System.in);
+    ReadWriteFile write = new ReadWriteFile();
+    ReadWriteFile read = new ReadWriteFile();
 
     public void addNewEmployee() {
         String iD;
@@ -43,7 +45,7 @@ public class EmployeeController {
         writeToEmployeeCsv(employee);
     }
 
-    public void showEmployeeList() {
+    public void showEmployeeMap() {
         Map<String, Employee> employeeMap = new TreeMap<>(readFromEmployeeCsv());
         System.out.println("-------------------------");
         for (Map.Entry<String, Employee> entry : employeeMap.entrySet()) {
@@ -52,13 +54,12 @@ public class EmployeeController {
         System.out.println("-------------------------");
     }
 
+
     public void writeToEmployeeCsv(Employee employee) {
-        ReadWriteFile write = new ReadWriteFile();
         write.write(employee, EMPLOYEE_PATH, true);
     }
 
     public Map<String, Employee> readFromEmployeeCsv() {
-        ReadWriteFile read = new ReadWriteFile();
         List<String[]> strings = new ArrayList<>(read.read(EMPLOYEE_PATH));
         Map<String, Employee> employeeMap = new TreeMap<>();
         for (String[] str : strings) {
@@ -68,8 +69,14 @@ public class EmployeeController {
         return employeeMap;
     }
 
-    public static void main(String[] args) {
-        EmployeeController employeeController = new EmployeeController();
-        employeeController.showEmployeeList();
+    public Stack<Employee> readEmployeeCsv() {
+        List<String[] > list = new ArrayList<>(read.read(EMPLOYEE_PATH));
+        Stack<Employee> employeeStack = new Stack<>();
+        for(String[] strings : list){
+            Employee employee = new Employee(strings);
+            employeeStack.push(employee);
+        }
+        return employeeStack;
     }
+
 }

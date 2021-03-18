@@ -1,10 +1,7 @@
 package controllers;
 
-import commons.ReadWriteFile;
-import models.*;
+import commons.Validation;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class MainController {
@@ -15,6 +12,8 @@ public class MainController {
     RoomController roomController = new RoomController();
     EmployeeController employeeController = new EmployeeController();
     BookingController bookingController = new BookingController();
+    CinemaController cinemaController = new CinemaController();
+    EmployeeProfileStack employeeProfileStack = new EmployeeProfileStack();
 
     public void displayMainMenu() {
         do {
@@ -24,8 +23,11 @@ public class MainController {
                     "3.Add New Customer\n" +
                     "4.Show Information of Customer\n" +
                     "5.Add New Booking\n" +
-                    "6.Employee Management\n" +
-                    "7.Exit");
+                    "6.Show Booking List\n" +
+                    "7.Employee Management\n" +
+                    "8.Cinema 4D\n" +
+                    "9.Search Employee'profile by fullname\n" +
+                    "10.Exit");
             int choice = choice();
             switch (choice) {
                 case 1:
@@ -44,13 +46,22 @@ public class MainController {
                     bookingController.addNewBooking();
                     break;
                 case 6:
-                    employeeManagement();
+                    bookingController.showBookingList();
                     break;
                 case 7:
-                    System.out.println("------GOOD BYE------");
+                    employeeManagement();
+                    break;
+                case 8:
+                    displayCinemaMenu();
+                    break;
+                case 9:
+                    employeeProfileStack.searchEmployeeProfile();
+                    break;
+                case 10:
                     System.exit(0);
                 default:
                     System.out.println("---Out of range (1 -> 7), try again ---");
+
             }
         } while (true);
     }
@@ -128,11 +139,10 @@ public class MainController {
         int choice;
         do {
             System.out.println("Input your choice (do not out of range's list) :");
-            try {
-                choice = Integer.parseInt(scanner.nextLine());
+            String tempChoice = scanner.nextLine();
+            if (Validation.validateChoice(tempChoice)) {
+                choice = Integer.parseInt(tempChoice);
                 break;
-            } catch (NumberFormatException ex) {
-                System.out.println("Please , input a integer do not out of range's list");
             }
         } while (true);
         return choice;
@@ -152,7 +162,7 @@ public class MainController {
                 employeeController.addNewEmployee();
                 break;
             case 2:
-                employeeController.showEmployeeList();
+                employeeController.showEmployeeMap();
                 break;
             case 3:
                 displayMainMenu();
@@ -162,7 +172,29 @@ public class MainController {
         }
     }
 
-
+    public void displayCinemaMenu() {
+        System.out.println("1.Sell Ticket\n" +
+                "2.Reset for next time\n" +
+                "3.Back to menu\n" +
+                "4.Exit");
+        int choice;
+        do {
+            choice = choice();
+        } while (choice < 1 || choice > 4);
+        switch (choice){
+            case 1:
+                cinemaController.sellTicket();
+                break;
+            case 2:
+                cinemaController.resetTicket();
+                break;
+            case 3:
+                displayMainMenu();
+                break;
+            case 4:
+                System.exit(0);
+        }
+    }
 
     public static void main(String[] args) {
         MainController mainController = new MainController();

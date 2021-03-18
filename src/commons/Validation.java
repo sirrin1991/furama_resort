@@ -21,7 +21,7 @@ public class Validation {
     private static final String PHONE_NUMBER = "^\\d{10,11}$";
     private static final String CUSTOMER_TYPE = "^(Diamond|Platinum|Gold|Silver|Member)$";
     private static final String EMPLOYEE_AGE = "^(1[89]|[2-5]\\d|6[0-5])$";
-    private static final String EMPLOYEE_ID = "^\\d+$";
+    private static final String REGEX_NUMBER = "^\\d+$";
 
     public static boolean validateVillaCode(String string) {
         return Pattern.matches(REGEX_VILLA_CODE, string);
@@ -155,31 +155,42 @@ public class Validation {
         }
     }
 
-    public static boolean validateEmployeeAge(String string){
-        try{
-            if(Pattern.matches(EMPLOYEE_AGE,string)){
+    public static boolean validateEmployeeAge(String string) {
+        try {
+            if (Pattern.matches(EMPLOYEE_AGE, string)) {
                 return true;
             }
             throw new AgeException("The age can not less than 18 or more than 65");
-        }catch (AgeException ex){
+        } catch (AgeException ex) {
             System.out.println(ex.getMessage());
             return false;
         }
     }
 
-    public static boolean validateEmployeeId(String string){
-        try{
-            if(Pattern.matches(EMPLOYEE_ID,string)){
+    public static boolean validateEmployeeId(String string) {
+        try {
+            if (Pattern.matches(REGEX_NUMBER, string)) {
                 return true;
             }
             throw new IdException("The id must be numbers");
-        }catch (IdException ex){
+        } catch (IdException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean validateChoice(String string) {
+        try {
+            if (Pattern.matches(REGEX_NUMBER, string)) {
+                return true;
+            }
+            throw new NumberFormatException("Please input a integer");
+        } catch (NumberFormatException ex) {
             System.out.println(ex.getMessage());
             return false;
         }
     }
 }
-
 
 
 

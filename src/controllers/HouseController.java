@@ -3,7 +3,7 @@ package controllers;
 import commons.ReadWriteFile;
 import commons.Validation;
 import models.House;
-import models.Villa;
+
 
 import java.util.*;
 
@@ -127,11 +127,11 @@ public class HouseController {
             System.out.println("House's list is empty");
             System.out.println("------------------------");
         }
-        System.out.println("------------------------");
+
         for (House house : houseSet) {
             System.out.println(house.showInfor());
         }
-        System.out.println("------------------------");
+
     }
 
     private void writeHouseCsv(House house) {
